@@ -1,7 +1,12 @@
-.timer {color: purple ;
+.timer {
+  color: purple;
 }
-#nav-link { color: purple;
+#nav-link {
+  color: purple;
 }
-#welcome-container {font-weight: bolder;
-
+#welcome-container {
+  font-weight: bolder;
+}
+#start-quiz {
+  background: purple;
 }
