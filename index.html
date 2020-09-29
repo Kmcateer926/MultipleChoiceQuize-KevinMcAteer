@@ -16,7 +16,7 @@
       integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <!-- this will show a link to the highscore page -->
@@ -32,7 +32,19 @@
         </li>
       </ul>
     </nav>
-
+    <div class="container" id="welcome!">
+      <div class="row">
+        <div class="col-md-12 text-center" id="welcome-container">
+          <h1>Coding Quiz Challenge</h1>
+          <h4>
+            Try to answer the following code-related questions within the time
+            limit. Keep in mind that incorrect answers will penalize your
+            score/time by ten seconds!
+          </h4>
+          <button type ="button" class ="btn btn-primary" id ="start-quiz">Start Quiz</button>
+        </div>
+      </div>
+    </div>
     <script src="./script.js" async defer></script>
   </body>
 </html>
