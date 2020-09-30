@@ -6,8 +6,11 @@ var correctAnswer = document.getElementById("correct-answer");
 var button = document.getElementById("start-quiz");
 var timerDisplay = document.getElementById("timer")
 
-var questionIndex = 0;
 
+
+var secondsLeft = 75;
+var penalty = 15;
+var questionIndex = 0;
 var quizQuestions = [
     {
         question: "Commonly used data types DO NOT include:",
@@ -20,20 +23,25 @@ var quizQuestions = [
         answer: "curly brackets", 
     }
 ]
+var finalQuestion = quizQuestions[2]
 
-function renderQuizQuestions() {
+function getQuizQuestions() {
     questionContainer.innerHTML = "";
     var question = document.createElement("h2");
     question.textContent = quizQuestions[questionIndex].question;
-    console.log(quizQuestions[questionIndex].question);
+    question.setAttribute("style", "margin-top:30px; margin-bottom:20px");
+    // console.log(question);
     questionContainer.append(question)
     renderChoices();
+    
 }
 
 function renderChoices() {
-    console.log(choices);
+    // console.log(choices);
+    answerContainer.innerHTML = "";
+
     for (var i = 0; i <= quizQuestions[questionIndex].choices.length; i++) {
-        var choiceButtons =document.createElement("button");
+        var choiceButtons = document.createElement("button");
         choiceButtons.setAttribute("style", "background-color: purple; color: white; margin: 5px");
         choiceButtons.setAttribute("data-value", quizQuestions[questionIndex].choices[i]);
         choiceButtons.textContent = quizQuestions[questionIndex].choices[i];
@@ -50,7 +58,7 @@ button.addEventListener("click", function () {
     questionContainer.textContent = quizQuestions.questions;
     answerContainer.setAttribute("style", "display:block");
     answerContainer.textContent = quizQuestions.choices;
-    renderQuizQuestions();
+    getQuizQuestions();
 });
 
 
