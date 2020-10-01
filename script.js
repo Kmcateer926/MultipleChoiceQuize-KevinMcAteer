@@ -2,11 +2,12 @@
 var welcomeContainer = document.getElementById("welcome-container");
 var answerContainer = document.getElementById("answer-container");
 var questionContainer = document.getElementById("question-container");
-var correctAnswer = document.getElementById("correct-answer");
+
 var button = document.getElementById("start-quiz");
 var timerDisplay = document.getElementById("timer");
 var questionIndex = 0;
 // time
+var timer = 0;
 var secondsLeft = 75;
 var penalty = 15;
 // questions and answers
@@ -45,18 +46,45 @@ var quizQuestions = [
     answer: "console log",
   },
 ];
-var finalQuestion = quizQuestions[4];
+
 // the renders the questions
-function getQuizQuestions() {
+
+
+
+  // attempting to render a quit function
+button.addEventListener("click", function () {
+  welcomeContainer.style.display = "none";
+  questionContainer.setAttribute("style", "display:block");
+  questionContainer.textContent = quizQuestions.questions;
+  getQuizQuestions();
+
+  // quiz timer function
+  window.onload = function () {
+    timerDisplay.textContent = 'timer ';
+  };
+  function startTimer() {
+    interval = setInterval(function () {
+      secondsLeft--;
+      timerDisplay.textContent = secondsLeft;
+      if (secondsLeft === 0) {
+        clearInterval(interval);
+        showGrade();
+      }
+    }, 1000);
+  }
+  startTimer();
+  
+  function getQuizQuestions() {
   questionContainer.innerHTML = "";
   var question = document.createElement("h2");
   question.textContent = quizQuestions[questionIndex].question;
   question.setAttribute("style", "margin-top:30px; margin-bottom:20px");
   // console.log(question);
   questionContainer.append(question);
+  // renders choices
   renderChoices();
 }
-// renders choices
+
 function renderChoices() {
   // console.log(choices);
   answerContainer.innerHTML = "";
@@ -93,7 +121,7 @@ answerContainer.addEventListener("click", function (event) {
     createDiv.innerHTML = "";
 
     if (answer === correctAnswer) {
-      createDiv.textContent.innerHTML = "correct!";
+      createDiv.textContent.innerHTML = "correct";
       questionIndex++;
       getQuizQuestions();
     } else {
@@ -104,29 +132,6 @@ answerContainer.addEventListener("click", function (event) {
     }
   }
 });
-
-// attempting to render a quit function
-function quit() {}
-button.addEventListener("click", function () {
-  welcomeContainer.style.display = "none";
-  questionContainer.setAttribute("style", "display:block");
-  questionContainer.textContent = quizQuestions.questions;
-  getQuizQuestions();
-
-  // quiz timer function
-  window.onload = function () {
-    timerDisplay.textContent = "time: 0";
-  };
-  function startTimer() {
-    var interval = setInterval(function () {
-      secondsLeft--;
-      timerDisplay.textContent = "time: " + secondsLeft;
-      if (secondsLeft === 0) {
-        clearInterval(interval);
-        showGrade();
-      }
-    }, 1000);
-  }
-  startTimer();
   getQuizQuestions();
 });
+function quit() {}
